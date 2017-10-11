@@ -26,4 +26,12 @@ public class MovieRunnerAverage
             
         }
     }
+    
+    public void getAverageRatingsOneMovie(){
+        SecondRatings sr = new SecondRatings("ratedmovies_short.csv", "ratings_short.csv");
+        ArrayList<Rating> avgList = sr.getAverageRatings(3);
+        for (Rating r : avgList){
+            
+        }
+    }
 }
