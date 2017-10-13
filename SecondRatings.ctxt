@@ -15,5 +15,5 @@ comment6.target=java.util.ArrayList\ getAverageRatings(int)
 comment7.params=id
 comment7.target=java.lang.String\ getTitle(java.lang.String)
 comment8.params=movieTitle
-comment8.target=java.lang.String\ getID(java.lang.String)
+comment8.target=java.lang.String\ getId(java.lang.String)
 numComments=9

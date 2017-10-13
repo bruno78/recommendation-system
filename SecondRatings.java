@@ -67,7 +67,7 @@ public class SecondRatings {
         return "Movie with ID " + id + " not found";
     }
     
-    public String getID(String movieTitle){
+    public String getId(String movieTitle){
         for (Movie m : myMovies){
             if(m.getTitle().equals(movieTitle)){
                 return m.getID();
