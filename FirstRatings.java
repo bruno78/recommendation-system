@@ -39,16 +39,16 @@ public class FirstRatings
     }
     
     
-    public ArrayList<Rater> loadRaters(String fileName){
+    public ArrayList<EfficientRater> loadRaters(String fileName){
         
-        ArrayList<Rater> movieRaterList = new ArrayList<Rater>();
+        ArrayList<EfficientRater> movieRaterList = new ArrayList<EfficientRater>();
         FileResource fr = new FileResource("./data/" + fileName);
         CSVParser raterData = fr.getCSVParser();
         
         for (CSVRecord raterEntry : raterData) {
             
             if(movieRaterList.size() == 0) {
-                Rater rater = new Rater(raterEntry.get("rater_id"));
+                EfficientRater rater = new EfficientRater(raterEntry.get("rater_id"));
                 rater.addRating(raterEntry.get("movie_id"),
                                 Double.parseDouble(raterEntry.get("rating")));
                 
@@ -60,7 +60,7 @@ public class FirstRatings
                 boolean found = false;
                 
                 for (int i = 0; i < movieRaterList.size(); i++) {
-                    Rater rater = movieRaterList.get(i);
+                    EfficientRater rater = movieRaterList.get(i);
                     
                     if (rater.getID().equals(id)){
                         rater.addRating(raterEntry.get("movie_id"),
@@ -70,7 +70,7 @@ public class FirstRatings
                 }
                 
                 if (!found) {
-                    Rater rater = new Rater(raterEntry.get("rater_id"));
+                    EfficientRater rater = new EfficientRater(raterEntry.get("rater_id"));
                     rater.addRating(raterEntry.get("movie_id"),
                                     Double.parseDouble(raterEntry.get("rating")));
                 
@@ -152,7 +152,7 @@ public class FirstRatings
     
     public void testLoadRaters() {
         // ArrayList<Rater> raterData = loadRaters("ratings_short.csv");
-        ArrayList<Rater> raterData = loadRaters("ratings.csv");
+        ArrayList<EfficientRater> raterData = loadRaters("ratings.csv");
         //ArrayList<Rater> raterData = loadRaters("ratedmoviesfull.csv");
         int maxRatings = 0;
         //String id = "2";
@@ -174,45 +174,42 @@ public class FirstRatings
         */
         System.out.println("Total raters: " + raterData.size()); 
         
-        for (Rater r : raterData){
+        for (EfficientRater r : raterData){
             if(r.getID().equals(id)) {
                  System.out.println("Number of ratings for user " + id + ": " + r.numRatings()); 
             }
-        }
-        
-        for (Rater r : raterData){
+            
             int currRatings = r.numRatings();
             if(currRatings > maxRatings){
                 maxRatings = currRatings;
             }
-        }
-        System.out.println("Maximum number of ratings: " + maxRatings);
-        for (Rater r : raterData) {
+            
             if(r.numRatings() == maxRatings) {
                 System.out.println("User with maximum ratings: " + r.getID());
             }
-        }
-       
-        for (Rater r : raterData){ 
-            ArrayList<String> itemsList = r.getItemsRated();
-       
+            
+            ArrayList<String> itemsList = r.getItemsRated();       
             for (String item : itemsList){
                 if(item.equals(movieId)) {
                     ratingsPerMovie ++;
                 }
             }
-        }
-        System.out.println("Total of ratings for movieID: " + movieId + " :" + ratingsPerMovie);
-        
-        for (Rater r : raterData) {
-            ArrayList<String> itemsList = r.getItemsRated();
-       
-            for (String item : itemsList){
+            
+            ArrayList<String> itemsList2 = r.getItemsRated();
+            for (String item : itemsList2){
                 if(!totalMovies.contains(item)) {
                     totalMovies.add(item);
                 }
             }
+            
         }
+        
+
+        System.out.println("Maximum number of ratings: " + maxRatings);
+        System.out.println("\n");
+        System.out.println("Total of ratings for movieID: " + movieId + " :" + ratingsPerMovie);
+        System.out.println("\n");
         System.out.println("Total movies rated by all raters: " + totalMovies.size());
+        System.out.println("\n");
     }
 }
