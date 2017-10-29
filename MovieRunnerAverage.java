@@ -18,6 +18,7 @@ public class MovieRunnerAverage
         System.out.println(sr.getMovieSize());
         System.out.println(sr.getRaterSize());
         ArrayList<Rating> ratedMovieList = sr.getAverageRatings(12);
+        Collections.sort(ratedMovieList);
         int count = 0;
         for (Rating rm : ratedMovieList){
             String movieTitle = sr.getTitle(rm.getItem());
