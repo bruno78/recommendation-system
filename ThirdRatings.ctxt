@@ -10,4 +10,6 @@ comment4.params=id\ minimalRaters
 comment4.target=double\ getAverageByID(java.lang.String,\ int)
 comment5.params=minimalRaters
 comment5.target=java.util.ArrayList\ getAverageRatings(int)
-numComments=6
+comment6.params=minimalRaters\ filterCriteria
+comment6.target=java.util.ArrayList\ getAverageRatingsByFilter(int,\ Filter)
+numComments=7
