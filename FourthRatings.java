@@ -15,14 +15,14 @@ public class FourthRatings
     
     public FourthRatings(String ratingsfile) {
         FirstRatings fr = new FirstRatings();
-        myRaters = fr.loadRaters(ratingsfile);
+        RaterDatabase.addRatings(ratingsfile);
     }
     
     private double getAverageByID(String id, int minimalRaters){
         double count = 0.0;
         double sum = 0.0;
         
-        for(EfficientRater r : myRaters){
+        for(Rater r : RaterDatabase.getRaters()){
             if(r.hasRating(id)) {
                 sum += r.getRating(id);
                 count ++;
@@ -60,5 +60,8 @@ public class FourthRatings
             }
         }
         return avgRatingsByFilter;
+    }
+    
+    private dotProduct(Rater me, Rater r){
     }
 }
