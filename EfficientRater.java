@@ -8,7 +8,7 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class EfficientRater
+public class EfficientRater implements Rater
 {
     private String myID;
     private HashMap<String,Rating> myRatings;
