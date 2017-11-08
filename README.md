@@ -1,5 +1,7 @@
 ## Recommendation System
 
+*...documentation in progress!*
+
 This recommendation program uses a Collaborative Filtering system. The idea is to create recommendations specific to a user or rather than the same recommendations for all users. That's accomplished by finding similarities of ratings between a user and other users.
 
 
@@ -39,7 +41,20 @@ ex.
 
 Sam is closer to the User than Chris. In this case we only use ratings from raters closer to the user.
 
-To represent 1-10 scale, we have to adjust ratings. Normalizing closer users who have rated movies 1 and 2 compared to 8 and 9.
+To represent 1-10 scale, we have to adjust the ratings. Normalizing closer users who have rated movies 1 and 2 compared to 8 and 9. One way of doing that is centralizing the ratings subtracting by 5 (the median between 1-10)
+
+In this case: (1-5) * (2-5) = 12, and (8-5) * (9-5) = 12
+
+* Each rater represented by vector of ratings
+
+  - Sam    [* , 0, -3, 2, * , 3, -4]
+  - Chris  [1 , 2, 0, * , * , * , 4]
+  - User   [-3, 1, * , -1, 0, -1, 1]
+
+* Sam and user: 0*1 + 2*-1 + 3*-1 + -4*1 = -9
+* Chris and user: -3*1 + 1*2 + 1*4 = 3
+
+The case here, Chris and user is closer than user is to Sam, since a rate is a measure for closeness. In an non-centered ratings, Sam was the closer one.
 
 
 
