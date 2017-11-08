@@ -10,6 +10,7 @@ The number of close raters is a parameter. You might use N equal to 10 to use 10
 Which movie has the highest average?
 
 ex.
+
 |               | The Fly | Spider-Man | Butterfly Effect | Beetlejuice  |
 | :------------ | :-----: | :--------: | :--------------: | :----------: |   
 |   Chris  (20) |     8   |      5     |        7         |              |
