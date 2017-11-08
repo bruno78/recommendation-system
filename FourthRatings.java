@@ -105,16 +105,20 @@ public class FourthRatings
             
             for(int k=0; k < numSimilarRaters; k++){
                 Rating r = list.get(k);
-                double weidht = r.getValue();
+                double weight = r.getValue();
                 String raterID = r.getItem();
                 Rater myRater = RaterDatabase.getRater(raterID);
                 if(myRater.hasRating(movieID)) {
                     countRaters ++;
                     sum += weight * myRater.getRating(movieID);
                 }
-                
+            }
+            if (countRaters >= minimalRaters){
+                weightedAverage = sum / countRaters;
+                ret.add(new Rating(movieID, weightedAverage));
             }
         } 
+        Collections.sort(ret, Collections.reverseOrder());
         return ret;
     }
 }
