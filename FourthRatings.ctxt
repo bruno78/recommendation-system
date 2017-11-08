@@ -16,4 +16,6 @@ comment7.params=id
 comment7.target=java.util.ArrayList\ getSimilarities(java.lang.String)
 comment8.params=id\ numSimilarRaters\ minimalRaters
 comment8.target=java.util.ArrayList\ getSimilarRatings(java.lang.String,\ int,\ int)
-numComments=9
+comment9.params=id\ numSimilarRaters\ minimalRaters\ filterCriteria
+comment9.target=java.util.ArrayList\ getSimilarRatingsByFilter(java.lang.String,\ int,\ int,\ Filter)
+numComments=10

@@ -13,8 +13,7 @@ public class FourthRatings
         this("ratings.csv");
     }
     
-    public FourthRatings(String ratingsfile) {
-        FirstRatings fr = new FirstRatings();
+    public FourthRatings(String ratingsfile) {;
         RaterDatabase.addRatings("data/" + ratingsfile);
     }
     
@@ -52,10 +51,10 @@ public class FourthRatings
         ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
         
         for (String movieID : movies){
-            double rating = getAverageByID(movieID, minimalRaters);
-            Rating movieAvgRate = new Rating(movieID, rating);
+            double avgRating = getAverageByID(movieID, minimalRaters);
             
-            if(rating != 0){
+            if(avgRating != 0){
+                Rating movieAvgRate = new Rating(movieID, avgRating);
                 avgRatingsByFilter.add(movieAvgRate);
             }
         }
@@ -79,13 +78,16 @@ public class FourthRatings
     }
     
     private ArrayList<Rating> getSimilarities(String id) {
-        
+  
         ArrayList<Rating> list = new ArrayList<Rating>();
         Rater me = RaterDatabase.getRater(id);
+        
         for (Rater r : RaterDatabase.getRaters()){
-            if (id != r.getID()) {
-                Rating rater = new Rating(r.getID(), dotProduct(me, r));
-                list.add(rater);
+            if (!r.equals(me)) {
+                double dotProd = dotProduct(me, r);
+                if (dotProd > 0) {
+                    list.add(new Rating(r.getID(), dotProd));
+                }
             }
         }
         Collections.sort(list, Collections.reverseOrder());
@@ -108,17 +110,55 @@ public class FourthRatings
                 double weight = r.getValue();
                 String raterID = r.getItem();
                 Rater myRater = RaterDatabase.getRater(raterID);
+                
                 if(myRater.hasRating(movieID)) {
                     countRaters ++;
                     sum += weight * myRater.getRating(movieID);
                 }
             }
+            
             if (countRaters >= minimalRaters){
                 weightedAverage = sum / countRaters;
                 ret.add(new Rating(movieID, weightedAverage));
             }
-        } 
+        }
+        
         Collections.sort(ret, Collections.reverseOrder());
         return ret;
+    }
+    
+    public ArrayList<Rating> getSimilarRatingsByFilter( String id, int numSimilarRaters,
+                                        int minimalRaters, Filter filterCriteria ) {
+       
+        ArrayList<Rating> ret = new ArrayList<Rating>();
+        ArrayList<Rating> list = getSimilarities(id);
+        ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+        
+        for (String movieID : movies){
+            double weightedAverage = 0;
+            double sum = 0;
+            int countRaters = 0;
+            
+            for(int k=0; k < numSimilarRaters; k++){
+                Rating r = list.get(k);
+                double weight = r.getValue();
+                String raterID = r.getItem();
+                Rater myRater = RaterDatabase.getRater(raterID);
+                
+                if(myRater.hasRating(movieID)) {
+                    countRaters ++;
+                    sum += weight * myRater.getRating(movieID);
+                }
+            }
+            
+            if (countRaters >= minimalRaters){
+                weightedAverage = sum / countRaters;
+                ret.add(new Rating(movieID, weightedAverage));
+            }
+        }
+        
+        Collections.sort(ret, Collections.reverseOrder());
+        return ret;
+                                        
     }
 }
