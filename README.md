@@ -24,7 +24,7 @@ ex.
 
 Given the average rating, Beetlejuice is has the highest rate and in this case it should be recommended to the user. But if Chris is closer to the user than Morgan? Using weighted averages, these values changes based on closeness between users.  
 
-Calculating the weights: (20*8 + 5*6)/2 + (5*20 + 10*7 + 5*6)/3 ...
+Calculating the weights: (20 * 8 + 5 * 6)/2 + (5 * 20 + 10 * 7 + 5 * 6)/3 ...
 
 Given the weighted averages, the recommended movie to watch is the Fly, different from the previous recommendation based solely on the average.
 
@@ -36,8 +36,8 @@ ex.
   - Chris  [6, 7, 5, 0, 0, 0, 9]
   - User   [2, 6, 0, 4, 5, 4, 6]
 
-* Sam and user: 5*6 + 7*4 + 8*4 + 1*6 = 96
-* Chris and user: 6*3 + 7*6 + 9*6 = 108
+* Sam and user: (5 * 6) + (7 * 4) + (8 * 4) + (1 * 6) = 96
+* Chris and user: (6 * 3) + (7 * 6) + (9 * 6) = 108
 
 Sam is closer to the User than Chris. In this case we only use ratings from raters closer to the user.
 
@@ -51,8 +51,8 @@ In this case: (1-5) * (2-5) = 12, and (8-5) * (9-5) = 12
   - Chris  [1 , 2, 0, * , * , * , 4]
   - User   [-3, 1, * , -1, 0, -1, 1]
 
-* Sam and user: 0*1 + 2*-1 + 3*-1 + -4*1 = -9
-* Chris and user: -3*1 + 1*2 + 1*4 = 3
+* Sam and user: (0 * 1) + (2 * -1) + (3 * -1) + (-4 * 1) = -9
+* Chris and user: (-3 * 1) + (1 * 2) + (1 * 4) = 3
 
 The case here, Chris and user is closer than user is to Sam, since a rate is a measure for closeness. In an non-centered ratings, Sam was the closer one.
 
