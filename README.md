@@ -2,11 +2,11 @@
 
 This recommendation program uses a Collaborative Filtering system. The idea is to create recommendations specific to a user rather than the same recommendations for all users. That's accomplished by finding similarities-of-ratings between a user and other users.
 
-### Weighted Averages
+## Weighted Averages
 
 The weighted averages are used to find movie recommendations. The weight in this case is based on how close a rater is to the user.
 
-#### Calculating Closeness using dot product.
+### Calculating Closeness using dot product.
 
 ex.
 * Each rater represented by vector of ratings
@@ -36,19 +36,19 @@ The star (\*) represents movies that weren't rated.
 
 Since a rate is a measure for closeness, Chris and the user are closer than the user is to Sam. In a non-centered rating, Sam is the closer.
 
-### Conclusion
+## Conclusion
 
 While I'm aware this is just a simple recommendation system, it raised questions about things that could be problematic along the way, such as new users and sparse datasets. And so here are some observations based on my own conclusions, and research:
 
-#### Pros
+### Pros
 
 This system works well once the user has already rated a few movies.
 
-#### Cons
+### Cons
 
 New users will not get recommendations since they haven't yet rated any movies.
 
-#### Possible Solution
+### Possible Solution
 
 Two possible solutions for this case are:
 
@@ -58,7 +58,7 @@ Two possible solutions for this case are:
 
 I'm working to further develop this project in Python, which can be found [here](https://github.com/bruno78/python-recommendation-system).
 
-### Capstone Project
+## Capstone Project
 
 This is the capstone project for the [Java Programming and Software Engineering Fundamentals Specialization](https://www.coursera.org/specializations/java-programming) by Duke University.
 
